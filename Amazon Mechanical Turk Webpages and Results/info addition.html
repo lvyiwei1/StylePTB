@@ -1,0 +1,142 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects">
+
+    <crowd-instructions link-text="View instructions" link-type="button">
+        <short-summary>
+            <p>Rewriting sentences such that it incorporates additional information provided. Do not include punctuations. If the information is already present in the sentence
+            or cannot be incorporated, write "N/A" as answer. </p>
+            <p>The rewritten sentence should be free of misspelled words and should be grammatically correct (other than punctuations)</p>
+            <b>Make sure you read the detailed instructions and examples before you start rewriting sentences.</b>
+            <b>Answers that does not fit the requirements in the detailed instructions will be rejected.</b>
+        </short-summary>
+
+        <detailed-instructions>
+            <h3>Rewriting sentences such that it emphasizes the specific adjective.</h3>
+            <p>
+              Given a sentence and a new piece of information, rewrite the sentence such that the new piece of information is included.
+            </p>
+            <p>
+                <b>Note that the original sentences will be without punctuations, and the re-written sentences should also not have punctuations.</b>
+                <b>Other than punctuation, the rewritten sentence should be grammatically correct and free of misspelled words</b>
+            </p>
+            <p>
+                <b>If incorporating the information is impossible or if the information is already included in the original sentence, write "N/A" as your answer.</b>
+            </p>
+            <p>
+                <b>After you rewrite the sentence, you need to review the sentence you wrote and determine if the sentence fits common sense, and check the "make sense" box accordingly.</b>
+            </p>
+            <p>
+                For example, the sentence "The cat is small" with info "['cat','large']" will be rewritten as "The large cat is small", which is grammatical but does not fit
+                common sense, so the make-sense box should not be checked.
+            </p>
+            <p><b>There are a lot more examples of what should be done in the "examples" tab. Please view them before starting the task.</b></p>
+        </detailed-instructions>
+
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>The big brown fox jumps over the sleazy dog</p>
+
+            <h3>Additional Information: </h3>
+            <p>['dog' 'on' 'the' 'couch']</p>
+
+            <h3>Response</h3>
+            <p>The big brown fox jumps over the sleazy dog on the couch</p>
+            <p><b>Make Sense:</b> True</p>
+        </positive-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>The company failed to keep its record</p>
+
+            <h3>Additional Information: </h3>
+            <p>['company' 'has' 'name']</p>
+
+            <h3>Response</h3>
+            <p>The company with a name failed to keep its record</p>
+            <p><b>Make Sense:</b> True</p>
+        </positive-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>Revenue fell in carpet sales</p>
+
+            <h3>Additional Information: </h3>
+            <p>['carpet' 'red']</p>
+
+            <h3>Response</h3>
+            <p>Revenue fell in red carpet sales</p>
+            <p><b>Make Sense:</b> True</p>
+        </positive-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>The stock market crashed on Wednesday</p>
+
+            <h3>Additional Information: </h3>
+            <p>['milk' 'in' 'stock']</p>
+
+            <h3>Response</h3>
+            <p>N/A</p>
+            <p><b>Make Sense:</b> False</p>
+            
+            <h3>Note:</h3>
+            Since the additional information doesn't fit the original sentence at all, there is no way to properly incorporate the additional information,
+            so N/A is put here.
+        </positive-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>Heavy rain poured down</p>
+
+            <h3>Additional Information: </h3>
+            <p>['rain' 'light']</p>
+
+            <h3>Response</h3>
+            <p>Heavy rain that is light poured down</p>
+            <p><b>Make Sense:</b> False</p>
+            
+            <h3>Note:</h3>
+            Rewritten sentence is contradictory, thus does not make sense
+        </positive-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>Heavy rain poured down</p>
+
+            <h3>Additional Information: </h3>
+            <p>['rain' 'heavy']</p>
+
+            <h3>Response</h3>
+            <p>N/A</p>
+            <p><b>Make Sense:</b> False</p>
+            
+            <h3>Note:</h3>
+            Additional information is already present in the original sentence
+        </positive-example>
+
+    </crowd-instructions>
+
+    <p><b>Make sure you read the detailed instructions and examples above before you start rewriting sentences.</b>
+    <b>Answers that does not fit the required format in the detailed instructions will be rejected.</b></p>
+    <p><b>Please make sure the sentence you submit contains no punctuations, free of misspelled words, and grammatically correct (other than omitted punctuations)</b></p>
+    <p>Please rewrite the following sentence, including the extra information: </p>
+    
+
+    <!-- Your contexts and intents will be substituted for the "context" and "intent" variables when you 
+           publish a batch with an input file containing multiple contexts and intents -->
+        <p><strong>Original Sentence: </strong>${sentence}</p>
+        <p><strong>Additional Information: </strong>${info}</p>
+        <crowd-input name="rewrite" placeholder="rewritten sentence" required></crowd-input>
+        <p>Does your rewritten sentence make sense? (Check the box if it does make sense, otherwise don't check the box)<p>
+        <div>
+            <crowd-checkbox name="MakeSense">Rewritten sentence makes sense</crowd-checkbox>
+        </div>
+        
+
+</crowd-form>

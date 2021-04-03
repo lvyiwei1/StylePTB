@@ -1,0 +1,173 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects">
+
+    <crowd-instructions link-text="View instructions" link-type="button">
+        <short-summary>
+            <p>Rewriting sentences such that it emphasizes the specific adjective following the required format. Do not include punctuations. If the adjective is already emphasized or cannot be emphasized, write "N/A" as answer. </p>
+            <p>The rewritten sentence should be free of misspelled words and should be grammatically correct (other than punctuations)</p>
+            <b>Make sure you read the detailed instructions and examples before you start rewriting sentences.</b>
+            <b>Answers that does not fit the required format in the detailed instructions will be rejected.</b>
+        </short-summary>
+
+        <detailed-instructions>
+            <h3>Rewriting sentences such that it emphasizes the specific adjective.</h3>
+            <p>
+              Given a sentence and a specific adjective in the sentence, rewrite the sentence such that the adjective is now emphasized.
+              The adjective should be emphasized by rewritting the entire sentence such that the main structure of the sentence is now a be-statement about the adjective.
+              For example, "The big brown fox jumps over the sleazy dog", if we want to emphasize "sleazy", then it can be rewritten as "The dog that the big brown fox jumped over is sleazy".
+              Do not attempt to emphasize the adjective using other methods (such as adding a "very" before the adjective).
+            </p>
+            <p>
+                <b>Note that the original sentences will be without punctuations, and the re-written sentences should also not have punctuations.</b>
+                <b>Other than punctuation, the rewritten sentence should be grammatically correct and free of misspelled words</b>
+            </p>
+            <p>
+                <b>If the adjective is already emphasized or such rewrite is impossible, write "N/A" as your answer.</b>
+            </p>
+            <p>
+                <b>If the adjective to emphasize occurs multiple times in a sentence, emphasize the first occurrance of the adjective in the original sentence.</b>
+            </p>
+            <p>
+                If the adjective to emphasize is inside a quote, just rewrite the quote part. (e.g. "He said I saw a red bird" goes to "He said the bird I saw was red")
+                </p>
+            <p><b>There are a lot more examples of what should be done and what should not be done in the "examples" tab. Please view them before starting the task.</b></p>
+        </detailed-instructions>
+
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>A year ago the Tokyo company had pretax profit of 35.38 billion yen says the manager</p>
+
+            <h3>Emphasize: </h3>
+            <p>pretax</p>
+
+            <h3>Response</h3>
+            <p>The profit of 35.38 billion yen of the Tokyo company a year ago was pretax says the manager</p>
+        </positive-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>The big brown fox jumps over the sleazy dog</p>
+
+            <h3>Emphasize: </h3>
+            <p>sleazy</p>
+
+            <h3>Response</h3>
+            <p>The dog that is jumped over by the big brown fox is sleazy</p>
+        </positive-example>
+        
+        <negative-example>
+            <h3>Original Sentence: </h3>
+            <p>The big brown fox jumps over the sleazy dog</p>
+
+            <h3>Emphasize: </h3>
+            <p>sleazy</p>
+
+            <h3>Response</h3>
+            <p>The big brown fox jumps over the very sleazy dog</p>
+            
+            <h3>Note:</h3>
+            <p>Must emphasize the adjective using the required format.</p>
+        </negative-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>Her smile is so attractive</p>
+
+            <h3>Emphasize: </h3>
+            <p>attractive</p>
+
+            <h3>Response</h3>
+            <p>N/A</p>
+            
+            <h3>Note: </h3>
+            <p>The adjective is already emphasized. </p>
+        </positive-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p> In order to catch the yellow frog the workers drained the lake</p>
+
+            <h3>Emphasize: </h3>
+            <p>yellow</p>
+
+            <h3>Response</h3>
+            <p>The frog the workers drained the lake to catch was yellow</p>
+        </positive-example>
+        
+        <negative-example>
+            <h3>Original Sentence: </h3>
+            <p> The shop on the side of the street is great</p>
+
+            <h3>Emphasize: </h3>
+            <p>great</p>
+
+            <h3>Response</h3>
+            <p>The shop on the side of the street is great</p>
+            
+            <h3>Note: </h3>
+            <p>When an adjective is already emphasized, write "N/A" instead of copying the sentence </p>
+        </negative-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p> While Tom was sleeping the dog killed a black bird </p>
+
+            <h3>Emphasize: </h3>
+            <p>black</p>
+
+            <h3>Response</h3>
+            <p>While Tom was sleeping the bird killed by the dog is black</p>
+            
+            <h3>Note: </h3>
+            <p>Do not include punctuations </p>
+        </positive-example>
+        
+        <negative-example>
+            <h3>Original Sentence: </h3>
+            <p> While Tom was sleeping the dog killed a black bird </p>
+
+            <h3>Emphasize: </h3>
+            <p>black</p>
+
+            <h3>Response</h3>
+            <p>While Tom was sleeping, the bird killed by the dog is black</p>
+            
+            <h3>Note: </h3>
+            <p>Do not include punctuations </p>
+        </negative-example>
+        
+        <negative-example>
+            <h3>Original Sentence: </h3>
+            <p> While Tom was sleeping the dog killed a black bird </p>
+
+            <h3>Emphasize: </h3>
+            <p>black</p>
+
+            <h3>Response</h3>
+            <p>While Tom was sleeping the dog that killed a bird is black</p>
+            
+            <h3>Note: </h3>
+            <p>Do not alter the meaning of the sentence </p>
+        </negative-example>
+
+    </crowd-instructions>
+
+    <p><b>Make sure you read the detailed instructions and examples above before you start rewriting sentences.</b>
+    <b>Answers that does not fit the required format in the detailed instructions will be rejected.</b></p>
+    <p><b>Please make sure the sentence you submit contains no punctuations, free of misspelled words, and grammatically correct (other than omitted punctuations)</b></p>
+    <p>Please rewrite the following sentence, emphasizing a specific adjective: </p>
+    
+
+    <!-- Your contexts and intents will be substituted for the "context" and "intent" variables when you 
+           publish a batch with an input file containing multiple contexts and intents -->
+        <p><strong>Original Sentence: </strong>${sentence}</p>
+        <p><strong>Emphasize: </strong>${emphasize}</p>
+        <crowd-input name="rewrite" placeholder="rewritten sentence" required></crowd-input>
+
+</crowd-form>

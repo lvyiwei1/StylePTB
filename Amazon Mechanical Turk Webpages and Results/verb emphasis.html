@@ -1,0 +1,177 @@
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects">
+
+    <crowd-instructions link-text="View instructions" link-type="button">
+        <short-summary>
+            <p>Rewriting sentences such that it emphasizes the specific verb following the required format. Do not include punctuations. If the verb is already emphasized or cannot be emphasized, write "N/A" as answer. </p>
+            <p>The rewritten sentence should be free of misspelled words and should be grammatically correct (other than punctuations)</p>
+            <b>Make sure you read the detailed instructions and examples before you start rewriting sentences.</b>
+            <b>Answers that does not fit the requirements in the detailed instructions will be rejected.</b>
+        </short-summary>
+
+        <detailed-instructions>
+            <h3>Rewriting sentences such that it emphasizes the specific verb or action.</h3>
+            <p>
+              In this sentence verb/action emphasis task, you are given a sentence and a verb in the sentence to emphasize.
+              Your task is to rewrite each sentence to emphasize the given verb action. If the rewrite is impossible or the given 
+              emphasis isn't a verb or action, write capitalized "N/A" in the answer line.
+            </p>
+            <b>
+                The verb action emphasis should be done by making the verb a noun and move it to the front. For example, "Big brown fox jumps over the sleazy dog"
+                when "jumps" needs to be emphasized, the rewritten sentence should be "Jumping over the sleazy dog is done by the big brown fox"(See examples for more details)
+            </b>
+            <p>
+                <b>Note that the original sentences will be without punctuations, and the re-written sentences should also not have punctuations.</b>
+                <b>Other than punctuation, the rewritten sentence should be grammatically correct and free of misspelled words.
+                Do not alter the meaning of the sentence. Do not change the tense of the sentence. </b>
+            </p>
+            <p>
+                <b>If the verb or action is already emphasized or such rewrite is impossible, write "N/A" as your answer.</b>
+                For example, in "Introducing pool by Riley was effective" and emphasize "Introducing", "N/A" should be written because "Introducing" is already emphasized.
+            </p>
+            <p>
+                <b>If the verb to emphasize occurs multiple times in a sentence, emphasize the first occurrance of the verb in the original sentence.</b>
+            </p>
+            <p>
+                If the verb to emphasize is inside a quote, just rewrite the quote part. (e.g. "He said I bought a red bird" goes to "He said the buying of a red bird was done by me")
+                </p>
+            <p><b>There are a lot more examples of what should be done and what should not be done in the "examples" tab. Please view them before starting the task.</b></p>
+        </detailed-instructions>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>The big brown fox jumps over the sleazy dog</p>
+
+            <h3>Emphasize: </h3>
+            <p>jumps</p>
+
+            <h3>Response</h3>
+            <p>The jumping over the sleazy dog is done by the big brown fox</p>
+        </positive-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>He had a gun</p>
+
+            <h3>Emphasize: </h3>
+            <p>had</p>
+
+            <h3>Response</h3>
+            <p>N/A</p>
+            
+            <h3>Note: </h3>
+            <p>There is no good way of changing "had" into a noun and moving it to the front</p>
+        </positive-example>
+        
+        <negative-example>
+            <h3>Original Sentence: </h3>
+            <p>He had a gun</p>
+
+            <h3>Emphasize: </h3>
+            <p>had</p>
+
+            <h3>Response</h3>
+            <p>Having a gun is done by him</p>
+            
+            <h3>Note: </h3>
+            <p>"Having a gun is done by him" does not really make sense as a sentence</p>
+        </negative-example>
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p> In order to catch the yellow frog the workers drained the lake</p>
+
+            <h3>Emphasize: </h3>
+            <p>drained</p>
+
+            <h3>Response</h3>
+            <p>The draining of the lake was done by the workers in order to catch the yellow frog</p>
+        </positive-example>
+        
+        
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p> While Tom was sleeping the dog killed a black bird </p>
+
+            <h3>Emphasize: </h3>
+            <p>killed</p>
+
+            <h3>Response</h3>
+            <p>The killing of a black bird by a dog happened while Tom was sleeping</p>
+        </positive-example>
+        
+        <negative-example>
+            <h3>Original Sentence: </h3>
+            <p> While Tom was sleeping the dog killed a black bird </p>
+
+            <h3>Emphasize: </h3>
+            <p>killed</p>
+
+            <h3>Response</h3>
+            <p>The killing of a bird by a dog happened while Tom was sleeping</p>
+            
+            <h3>Note: </h3>
+            <p>Do not miss out information (the bird was black in the original sentence) </p>
+        </negative-example>
+        
+        <negative-example>
+            <h3>Original Sentence: </h3>
+            <p> While Tom was sleeping the dog killed a black bird </p>
+
+            <h3>Emphasize: </h3>
+            <p>killed</p>
+
+            <h3>Response</h3>
+            <p>The killing of a dog by a black bird happened while Tom was sleeping</p>
+            
+            <h3>Note: </h3>
+            <p>Do not alter the meaning of the sentence </p>
+        </negative-example>
+
+        <positive-example>
+            <h3>Original Sentence: </h3>
+            <p>The company continued to produce quality products</p>
+
+            <h3>Emphasize: </h3>
+            <p>continued</p>
+
+            <h3>Response</h3>
+            <p>The continuation of quality products production was done by the company</p>
+        </positive-example>
+        
+        <negative-example>
+            <h3>Original Sentence: </h3>
+            <p>The company continued to produce quality products</p>
+
+            <h3>Emphasize: </h3>
+            <p>continued</p>
+
+            <h3>Response</h3>
+            <p>The continuation of quality products production is done by the company</p>
+            
+            <h3>Note: </h3>
+            <p>Do not change the tense of the sentence </p>
+        </negative-example>
+        
+        
+    </crowd-instructions>
+
+    <p><b>Make sure you read the detailed instructions and examples above before you start rewriting sentences.</b>
+    <b>Answers that does not fit the required format in the detailed instructions will be rejected.</b></p>
+    <p><b>Please make sure the sentence you submit contains no punctuations, free of misspelled words, and grammatically correct (other than omitted punctuations)</b></p>
+    <p>Please rewrite the following sentence, emphasizing a specific verb: </p>
+    
+
+    <!-- Your contexts and intents will be substituted for the "context" and "intent" variables when you 
+           publish a batch with an input file containing multiple contexts and intents -->
+        <p><strong>Original Sentence: </strong>${sentence}</p>
+        <p><strong>Emphasize: </strong>${emphasize}</p>
+        <crowd-input name="rewrite" placeholder="rewritten sentence" required></crowd-input>
+
+</crowd-form>

@@ -1,0 +1,43 @@
+optim {
+    seed = 0  # random seed
+    learning_rate = 0.001
+    batch_size = 16 # examples per batch
+    max_iters = 8000  # max number of mini-batch steps to take
+}
+
+eval {
+    num_examples = 10
+    big_num_examples = 100
+}
+
+timing {
+    eval_small = 100
+    eval_big = 1000
+}
+
+model {
+    word_dim = 300
+    hidden_dim = 256  # hidden state dim of encoder and decoder
+    agenda_dim = 256  # agenda vector dim
+    vocab_size = 4998  # a proper size would be >20000
+    attention_dim = 256
+    encoder_layers = 2
+    decoder_layers = 4
+    wvec_path = github.txt
+    num_copy_tokens = 200
+    ident_pr = 0.1
+    train_source_embeds = True
+    train_target_embeds = True
+    decoder_dropout_prob = 0.0
+    encoder_dropout_prob = 0.0
+    vae_kappa = 500
+    full_vae = True
+    use_vae = True
+}
+
+dataset {
+    path = github
+    source_cols = [0,1,2]
+    target_col = 3
+    seq_max = 150
+}

@@ -9,26 +9,47 @@ python single_transform_checkout.py [3-letter style code]
 After you run the script, the data will be contained in a folder with the 3-letter code as name.
 
 3 letter style codes:
+
 TFU == To Future
+
 TPA == To Past
+
 TPR == To Present
+
 ATP == Active To Passive
+
 PTA == Passive To Active
+
 PFB == PP Front To Back
+
 PBF == PP Back To Front
+
 IAD == Information Addition
+
 ARR == ADJ/ADV Remooval
+
 SBR == Substatement Removal
+
 PPR == PP Removal
+
 AEM == ADJ Emphasis
+
 VEM == Verb Emphasis
+
 NSR == Noun Synonym Replacement
+
 ASR == Adjective Synonym Replacement
+
 VSR == Verb Synonym Replacement
+
 NAR == Noun Antonym Replacement
+
 AAR == Adjective Antonym Replacement
+
 VAR == Verb Antonym Replacement
+
 LFS == Least Frequent Synonym Replacement
+
 MFS == Most Frequent Synonym Replacement
 
 ----------------------------

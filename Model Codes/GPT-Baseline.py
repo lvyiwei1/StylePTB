@@ -9,19 +9,21 @@ else:
 gpt_tokenizer = transformers.GPT2Tokenizer.from_pretrained('gpt2')
 gpt_model = transformers.GPT2LMHeadModel.from_pretrained('gpt2').to(device)
 
+# pad input with endoftext
 def padinput(inputlist, totalpad = 80):
   pads = [0]*(totalpad-len(inputlist))
   input = inputlist+pads
   mask = [1]*len(inputlist)+pads
   return input,mask
 
+# create label for training
 def labels(inlen,outputlist,totalpad = 80):
   pads1 = [-100]*inlen
   pads2 = [-100]*(totalpad-inlen-len(outputlist))
   #print(outputlist)
   return pads1+outputlist+pads2
 
-
+# make sentences to lower case
 def lowering(pairs, tests):
     for pair in pairs:
         for i in range(0, 2):
@@ -30,7 +32,7 @@ def lowering(pairs, tests):
         for i in range(0, 2):
             pair[i] = pair[i].lower()
 
-
+# make all sentences in training set the same (for debugging purpose)
 def makesame(pairs, tests):
     # news = []
     for pair in pairs:
@@ -43,7 +45,7 @@ def makesame(pairs, tests):
         pair[1] = pair[0]
         # tests += news
 
-
+# change numericals to NUM
 def numpreprocess(pairs, tests):
     for pair in pairs + tests:
         for i in range(0, 2):
@@ -55,7 +57,7 @@ def numpreprocess(pairs, tests):
                     rep.append(word)
             pair[i] = ' '.join(rep)
 
-
+# change numericals except style tokens to NUM
 def specialnumpreprocess(pairs, tests, startloc=2):
     for pair in (pairs + tests):
         rep = []
@@ -75,10 +77,10 @@ def specialnumpreprocess(pairs, tests, startloc=2):
                 rep.append(word)
         pair[1] = ' '.join(rep)
 
-
+# words that appeared less than or equal to unkbar are marked as UNK
 unkbar = 2
 
-
+# change infrequent words to UNK
 def preprocess(pairs, tests):
     dicts = {}
     for pair in pairs:
@@ -117,19 +119,21 @@ limit = 10
 cur = 0
 for row in ff:
 
-    # pairs.append(row)
-    # """
+    pairs.append(row)
+    """
     if row[0][0:4] in ['0 4 ', '0 5 ', '1 4 ', '2 4 ', '3 4 ']:
         pairs.append(row)
-        # """
+    """
 f = open('valid.tsv', 'r')
 ff = csv.reader(f, delimiter='\t')
 for row in ff:
     tests.append(row)
 
 lowering(pairs, tests)
-# numpreprocess(pairs,tests)
-specialnumpreprocess(pairs, tests)
+# use this for single style transfer
+numpreprocess(pairs,tests)
+# use this for compositional transfer
+# specialnumpreprocess(pairs, tests)
 # makesame(pairs,tests)
 # preprocess(pairs,tests)
 

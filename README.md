@@ -29,7 +29,7 @@ The next step is to clone the repository:
 git clone https://github.com/lvyiwei1/StylePTB.git
 ```
 
-## Data
+## StylePTB Dataset
 
 To checkout single style transfers, use single_transform_checkout.py with the three letter style code as follows:
 

@@ -89,4 +89,8 @@ The scripts for GPT baseline, GRU+attn, Retrieve-Edit, and StyleGPT are in the "
 
 ## Evaluation
 
+We used maluuba nlg-eval to evaluate model performance using automated metrics. See https://github.com/Maluuba/nlg-eval for instructions on evaluation
+
+## Other scripts
+
 The scripts used to perform automated transfers with parse trees are in the "Automatic Transfer Scripts", and the webpages and full results of the human annotated transfers are in "Amazon Mechanical Turk Webpages and Results" folder.

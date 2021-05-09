@@ -1,5 +1,22 @@
 # StylePTB: A Compositional Benchmark for Fine-grained Controllable Text Style Transfer
 
+
+## Paper
+
+[**StylePTB: A Compositional Benchmark for Fine-grained Controllable Text Style Transfer**](https://arxiv.org/abs/2104.05196)<br>
+Yiwei Lyu*, [Paul Pu Liang*](http://www.cs.cmu.edu/~pliang/), Hai Pham*, [Ruslan Salakhutdinov](https://www.cs.cmu.edu/~rsalakhu/), and [Louis-Philippe Morency](https://www.cs.cmu.edu/~morency/)<br>
+NAACL 2021. (*equal contribution)
+
+If you find this repository useful, please cite our paper:
+```
+@article{lyu2021styleptb,
+  title={StylePTB: A Compositional Benchmark for Fine-grained Controllable Text Style Transfer},
+  author={Lyu, Yiwei and Liang, Paul Pu and Pham, Hai and Hovy, Eduard and P{\'o}czos, Barnab{\'a}s and Salakhutdinov, Ruslan and Morency, Louis-Philippe},
+  journal={arXiv preprint arXiv:2104.05196},
+  year={2021}
+}
+```
+
 ----------------------------
 
 To checkout single style transfers, use single_transform_checkout.py with the three letter style code as follows:

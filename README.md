@@ -17,7 +17,9 @@ If you find this repository useful, please cite our paper:
 }
 ```
 
-----------------------------
+## Installation
+
+## Data
 
 To checkout single style transfers, use single_transform_checkout.py with the three letter style code as follows:
 
@@ -69,14 +71,12 @@ LFS == Least Frequent Synonym Replacement
 
 MFS == Most Frequent Synonym Replacement
 
-----------------------------
-
 To access the compositional datasets, a few of them are provided in the "Compositional Datasets" folder. No checkout needed.
 
-----------------------------
+## Running the model
 
 The scripts for GPT baseline, GRU+attn, Retrieve-Edit, and StyleGPT are in the "Model Codes" folder. Note that the code for Retrieve-Edit is taken directly from the codes provided by the authors of "A Retrieve-and-Edit Framework for Predicting Structured Outputs" (NeurIPS2018)
 
----------------------------
+## Evaluation
 
 The scripts used to perform automated transfers with parse trees are in the "Automatic Transfer Scripts", and the webpages and full results of the human annotated transfers are in "Amazon Mechanical Turk Webpages and Results" folder.

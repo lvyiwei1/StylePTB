@@ -19,6 +19,16 @@ If you find this repository useful, please cite our paper:
 
 ## Installation
 
+First check that the requirements are satisfied:</br>
+Python 3.6</br>
+torch 1.2.0</br>
+numpy 1.18.1</br>
+
+The next step is to clone the repository:
+```bash
+git clone https://github.com/lvyiwei1/StylePTB.git
+```
+
 ## Data
 
 To checkout single style transfers, use single_transform_checkout.py with the three letter style code as follows:

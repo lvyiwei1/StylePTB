@@ -4,7 +4,7 @@
 ## Paper
 
 [**StylePTB: A Compositional Benchmark for Fine-grained Controllable Text Style Transfer**](https://arxiv.org/abs/2104.05196)<br>
-Yiwei Lyu*, [Paul Pu Liang*](http://www.cs.cmu.edu/~pliang/), Hai Pham*, Eduard Hovy, Barnab{\'a}s P{\'o}czos, [Ruslan Salakhutdinov](https://www.cs.cmu.edu/~rsalakhu/), and [Louis-Philippe Morency](https://www.cs.cmu.edu/~morency/)<br>
+Yiwei Lyu*, [Paul Pu Liang*](http://www.cs.cmu.edu/~pliang/), Hai Pham*, [Eduard Hovy](), [Barnabas Poczos](), [Ruslan Salakhutdinov](https://www.cs.cmu.edu/~rsalakhu/), and [Louis-Philippe Morency](https://www.cs.cmu.edu/~morency/)<br>
 NAACL 2021. (*equal contribution)
 
 If you find this repository useful, please cite our paper:

@@ -25,7 +25,6 @@ if validsplit < 1:
 if testsplit < 2:
     testsplit=2
 
-exit(0)
 
 import os
 os.mkdir(sys.argv[1])
